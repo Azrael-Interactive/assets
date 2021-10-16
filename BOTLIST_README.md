@@ -77,10 +77,6 @@ Azrael uses the following open source packages:
 
 <a href="https://azrl.cc/dis?utm_src=Github" target="_blank"><img src="https://cdn.azrael.gg/assets/remote/img/market/azrael_join_us_banner.png" alt="Join Us"></a>
 
-## License
-
-MIT
-
 ---
 
 > [azrael.gg](https://azrael.gg) &nbsp;&middot;&nbsp;
