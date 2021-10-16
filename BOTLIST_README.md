@@ -1,13 +1,13 @@
 
 <h1 align="center">
   <br>
-  <a href="http://azrael.gg?utm_src=github"><img src="https://cdn.azrael.gg/uploads/branding/azrael_logo_primary.png" alt="Azrael" width="200"></a>
+  <a href="https://azrael.gg?utm_src=Github"><img src="https://cdn.azrael.gg/uploads/branding/azrael_logo_primary.png" alt="Azrael" width="200"></a>
   <br>
   Azrael
   <br>
 </h1>
 
-<h4 align="center">A powerful global ban bot, API and risk solutions system madw with <a href="http://nodejs.org" target="_blank">Node.js</a>, <a href="https://www.python.org/" target="_blank">Python</a>, <a href="https://isocpp.org/" target="_blank">C++</a> and the <a href="https://discord.com/developers/docs/intro" target="_blank">Discord API</a>.</h4>
+<h4 align="center">A powerful global ban bot, API and risk solutions system madw with <a href="https://nodejs.org" target="_blank">Node.js</a>, <a href="https://www.python.org/" target="_blank">Python</a>, <a href="https://isocpp.org/" target="_blank">C++</a> and the <a href="https://discord.com/developers/docs/intro" target="_blank">Discord API</a>.</h4>
 
 <p align="center">
   <a href="https://img.shields.io/discord/859549564536356864">
