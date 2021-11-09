@@ -9,11 +9,6 @@
 
 <h4 align="center">A powerful API system built to maintain a list of currently known phishing links.</h4>
 
-<p align="center">
-  <a href="https://img.shields.io/discord/859549564536356864">
-    <img src="https://img.shields.io/discord/859549564536356864"
-         alt="Discord">
-  </a>
   <a href="https://img.shields.io/maintenance/yes/2021">
     <img src="https://img.shields.io/maintenance/yes/2021">
   </a>
@@ -21,91 +16,165 @@
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
+  <a href="#getting-started">Getting Started</a> •
   <a href="#how-to-use">How To Use</a> •
-  <a href="#banlist-affiliate-program">Banlist Affiliate Program</a> •
-  <a href="#credits">Credits</a> •
   <a href="#support">Support</a>
 </p>
 
 ## Key Features
 
-* Simple Setup
-  - Setup your version of our API in under 5 minutes!
-* Fully Customizable
-  - Need more ban reasons? Want to use specific proof links? You can customize all of that with the API's simple setup!
+* Whitelist Only
+  - Access to the API is only available via whitelisting, preventing the information from falling into the wrong hands
+* Easy to Use
+  - Our API automatically detects links in your request, no need to sort through the data to send just the link.
 * 24/7 Support
-  - Let us, help you. Whether you need support with the setup, customization or maintenance of your API. We are here to help, reach out to our Banlist Client Support team for assistance.
+  - We are here to help, reach out to our support team for assistance.
+
+## Getting Started
+
+To gain access to our API, you will need to join our [Discord](https://discord.gg/UZJcaVvnTa) server and reach out to our support team via the [Phisherman](https://discord.com/users/906697436553154680) and request access to the API.
+
+If your request is approved, you will recieve a DM containing your API token.
 
 ## How To Use
-
-To clone and run this application, you'll need a linux enviroment running Node.js v14. From your command line:
-
+### Required Headers
 ```
-# Clone this repository
-$ git clone https://github.com/Azrael-Interactive/api.git
-
-# Go into the repository
-$ cd api
-
-# Install Dependencies
-$ npm install
-
-# Run Setup
-$ npm run setup
-
-# Run the app
-$ npm start
+Authorization : Bearer Your Token Here
+Content-Type : Supported: application/json and application/x-www-form-urlencoded
+```
+### Example Body
+```
+{ "data": "This message contains a link example.com but its not a phishing link" }
 ```
 
-The default port is 3000, if you need to change the port, you can change it in the `config.json` file.
+### Example Requests
+#### Curl/Bash
+```bash
+#!/bin/bash
 
-### Generating API Token(s)
+curl -X POST https://phish.azrael.gg/check -H "User-Agent: Azrael Interactive LLC (azrl.cc) / http 1.1" -H "Authorization: Bearer Your Token Here" -H "Content-Type: application/json" -d "{\"data\": \"example.com\"}"
+```
+#### Python
+```python
+import requests
+from requests.structures import CaseInsensitiveDict
 
-To generate API Token(s) for your API, an endpoint has already been created and you simply need to send a `POST` request to the endpoint. An example has been provided below using [node-fetch v2.6.5](https://www.npmjs.com/package/node-fetch/v/2.6.5)
+url = "https://phish.azrael.gg/check"
 
+headers = CaseInsensitiveDict()
+headers["User-Agent"] = "Azrael Interactive LLC (azrl.cc) / http 1.1"
+headers["Authorization"] = "Bearer Your Token Here"
+headers["Content-Type"] = "application/json"
+
+data = '{"data": "example.com"}'
+
+
+resp = requests.post(url, headers=headers, data=data)
+
+print(resp.status_code)
+
+```
+#### JavaScript/AJAX
 ```javascript
-const body = { id: '1', action: 'CREATE' }; 
-// body.id - Internal Reference ID, Used to identify the moderator on ban data. Typeof STRING
-// body.action - Action to take, CREATE or DELETE a token. Typeof STRING
+var url = "https://phish.azrael.gg/check";
 
-fetch('https://yourapi.com/admin/token', {
-        method: 'POST',
-        body:    JSON.stringify(body),
-        headers: { 
-          'Authorization': 'YOUR_MASTER_TOKEN' // Set/Update in config.json
-          'Content-Type': 'application/json' 
-        },
-    })
-    .then(res => res.json())
-    .then(json => console.log(json));
-    
-    // Expected Response
-    { "status": "200", "message": "Token Created", "data": { "internal_id": "1", "token": "2xqhbwLaSB0ZxSO47oxTKnxuOQV8rt" }}
+var xhr = new XMLHttpRequest();
+xhr.open("POST", url);
+
+xhr.setRequestHeader("User-Agent", "Azrael Interactive LLC (azrl.cc) / http 1.1");
+xhr.setRequestHeader("Authorization", "Bearer Your Token Here");
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.onreadystatechange = function () {
+   if (xhr.readyState === 4) {
+      console.log(xhr.status);
+      console.log(xhr.responseText);
+   }};
+
+var data = '{"data": "discord-nitroapp.ru.com example.com"}';
+
+xhr.send(data);
 ```
-### Dependencies
-- [express](https://www.npmjs.com/package/express)
-- [body-parser](https://www.npmjs.com/package/body-parser) 
-- [moment](https://www.npmjs.com/package/moment) 
-- [response-time](https://www.npmjs.com/package/response-time) 
-- [keyv](https://www.npmjs.com/package/keyv) 
-- [@Keyv/sqlite](https://www.npmjs.com/package/@keyv/sqlite) 
+#### C#/.NET
+```csharp
+var url = "https://phish.azrael.gg/check";
 
-## Banlist Affiliate Program
+var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+httpRequest.Method = "POST";
 
-We offer a banlist affiliate program for users and organizations that utilize our open-sourced API in a public instance. This program includes the following benefits:
-* Priority Support
-  - Get dedicated and priority support through from our Banlist Client Support team.
-* Affiliate Newsletter
-  - Stay in the know, find out about changes to the program before they are released.
-* Implementation into Azrael
-  - If your banlist meets our affiliate program guidelines, we may implement your banlist into the Azrael bot or other security services.
-* Hands on Support
-  - We get it, things sometimes don't go as planned. That's why we offer hands on support directly from the experts who built the Azrael API.
+httpRequest.Headers["User-Agent"] = "Azrael Interactive LLC (azrl.cc) / http 1.1";
+httpRequest.Headers["Authorization"] = "Bearer Your Token Here";
+httpRequest.ContentType = "application/json";
 
+var data = "{\"data\": \" example.com\"}";
+
+using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+{
+   streamWriter.Write(data);
+}
+
+var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+{
+   var result = streamReader.ReadToEnd();
+}
+
+Console.WriteLine(httpResponse.StatusCode);
+```
+
+### Response(s)
+#### 400 Bad Request
+```json
+{
+    "status": 400,
+    "message": "Bad Request",
+    "status_ext": {
+        "1": "Additional Details"
+    }
+}
+```
+#### 401 Unauthorized
+```json
+{
+    "status": 401,
+    "message": "Unauthorized",
+    "status_ext": {
+        "1": "Additional Details"
+    }
+}
+```
+#### 403 Forbidden
+```json
+{
+    "status": 403,
+    "message": "Forbidden",
+    "status_ext": {
+        "1": "Additional Details"
+    }
+}
+```
+#### 200 OK (No Match)
+```json
+{
+    "matched": false
+}
+```
+#### 200 OK (Match Found)
+```json
+{
+    {
+    "matched": true,
+    "phish": {
+        "matches": 1,
+        "links": ["example.com"]
+    }
+  }
+}
+```
 
 ## Support
 
-<a href="https://azrl.cc/dis?utm_src=Github" target="_blank"><img src="https://cdn.azrael.gg/assets/remote/img/market/azrael_join_us_banner.png" alt="Join Us"></a>
+<a href="https://discord.gg/UZJcaVvnTa" target="_blank"><img src="https://cdn.azrael.gg/assets/remote/img/market/azrael_join_us_banner.png" alt="Join Us"></a>
 
 ---
 
